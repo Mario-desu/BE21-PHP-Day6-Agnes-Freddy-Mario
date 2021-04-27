@@ -13,17 +13,17 @@ if (! isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
 
 require_once '../components/db_connect.php' ;
 
-if ($_GET['hotel_id']) {
-    $id = $_GET['hotel_id'];
+if ($_GET['id']) {
+    $id = $_GET['id'];
     $sql = "SELECT * FROM hotels WHERE hotel_id = {$id}";
     // echo $sql;
     $result = $connect->query($sql);
     if ($result->num_rows == 1) {
         $data = $result->fetch_assoc();
         $name = $data['hotelName'];
-        $location = $data['location'];
-        $price = $data['price'];
-        $image = $data['image'];
+        $location = $data['hotelLoc'];
+        $price = $data['hotelPrice'];
+        $image = $data['hotelImage'];
         $agency = $data['fk_agencyId'];
 
         $resultAgency = mysqli_query($connect, "SELECT * FROM agency");
@@ -67,7 +67,7 @@ if ($_GET['hotel_id']) {
     </head>
     <body>
         <fieldset>
-            <legend class='h2'>Update request <img class='img-thumbnail rounded-circle' src='pictures/<?php echo $picture ?>' alt="<?php echo $name ?>"></legend>
+            <legend class='h2'>Update request <img class='img-thumbnail rounded-circle' src='../pictures/<?php echo $image ?>' alt="<?php echo $name ?>"></legend>
             <form action="actions/a_update.php"  method="post" enctype="multipart/form-data">
                 <table class="table">
                     <tr>
@@ -96,7 +96,7 @@ if ($_GET['hotel_id']) {
                     </tr>
                     <tr>
                         <input type= "hidden" name= "hotel_id" value= "<?php echo $data['hotel_id'] ?>" />
-                        <input type= "hidden" name= "image" value= "<?php echo $data['image'] ?>" />
+                        <input type= "hidden" name= "image" value= "<?php echo $data['hotelImage'] ?>" />
                         <td><button class="btn btn-success" type= "submit">Save Changes</button></td>
                         <td><a href= "index.php"><button class="btn btn-warning" type="button">Back</button></a></td>
                     </tr>

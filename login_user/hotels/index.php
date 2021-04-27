@@ -18,7 +18,7 @@ $tbody=''; //this variable will hold the body for the table
 if(mysqli_num_rows($result)  > 0) {     
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){         
         $tbody .= "<tr>
-            <td><img class='img-thumbnail' ../src='pictures/" .$row['hotelImage']."'</td>
+            <td><img class='img-thumbnail' src='../pictures/" .$row['hotelImage']."'</td>
             <td>" .$row['hotelName']."</td>
             <td>" .$row['hotelLoc']."</td>
             <td>" .$row['hotelPrice']."</td>

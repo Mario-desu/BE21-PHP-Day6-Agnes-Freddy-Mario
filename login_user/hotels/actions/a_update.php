@@ -20,16 +20,16 @@ if ($_POST) {
     $location = $_POST['location'];
     $price = $_POST['price'];
     $agency = $_POST['agency'];
-    $id = $_POST['id'];
+    $id = $_POST['hotel_id'];
     //variable for upload images errors is initialized
     $uploadError = '';
 
     $image = file_upload($_FILES['image']);//file_upload() called  
     if($image->error===0){
-        ($_POST["image"]=="product.png")?: unlink("../pictures/$_POST[image]");           
-        $sql = "UPDATE hotels SET hotelName = '$name', hotelLoc = '$location', price = $price, image = '$image->fileName' WHERE hotel_id = {$id}";
+        ($_POST["image"]=="product.png")?: unlink("../../pictures/$_POST[image]");           
+        $sql = "UPDATE hotels SET hotelName = '$name', hotelLoc = '$location', hotelPrice = $price, hotelImage = '$image->fileName' WHERE hotel_id = {$id}";
     }else{
-        $sql = "UPDATE hotels SET hotelName = '$name', hotelLoc = '$location', price = $price WHERE hotel_id = {$id}";
+        $sql = "UPDATE hotels SET hotelName = '$name', hotelLoc = '$location', hotelPrice = $price WHERE hotel_id = {$id}";
     }    
     if ($connect->query($sql) === TRUE) {
         $class = "success";
