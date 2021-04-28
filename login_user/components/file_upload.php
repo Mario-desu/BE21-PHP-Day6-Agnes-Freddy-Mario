@@ -25,17 +25,15 @@ function file_upload($image, $source = 'login_user') {
                 if ($fileSize < 500000) { //500kb this number is in bytes
                     //it gives a file name based microseconds
                     $fileNewName = uniqid('') . "." . $fileExtension; // 1233343434.jpg i.e
-                    if($source == 'hotels'){
-                        echo "bbbb";
-                        $destination = "../pictures/$fileNewName";
+                    if($source == 'hotel'){
+                       
+                        $destination = "../../pictures/$fileNewName";
 
                     }elseif ($source == 'login_user'){
-                        echo "cccc";
-                        $destination = "../pictures/$fileNewName";
+                        
+                        $destination = "pictures/$fileNewName";
 
-                    } else {
-                        echo "aaaa";
-                    }
+                    } 
                     
                     if (move_uploaded_file($fileTmpName, $destination)) {
                         $result->error = 0;
