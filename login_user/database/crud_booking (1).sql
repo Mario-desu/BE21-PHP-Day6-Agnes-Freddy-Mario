@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 28. Apr 2021 um 10:00
+-- Erstellungszeit: 28. Apr 2021 um 15:45
 -- Server-Version: 10.4.18-MariaDB
 -- PHP-Version: 8.0.3
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `crud_booking`
 --
+CREATE DATABASE IF NOT EXISTS `crud_booking` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `crud_booking`;
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,7 @@ CREATE TABLE `hotels` (
 --
 
 INSERT INTO `hotels` (`hotel_id`, `hotelName`, `hotelLoc`, `hotelPrice`, `hotelImage`, `fk_agencyId`) VALUES
-(1, 'Hotel Sachre', 'Vienna', '450.00', '60883939c329c.jpg', NULL),
+(1, 'Hotel Sacher', 'Vienna', '300.00', '60894b1066f43.png', NULL),
 (2, 'Marriott Hotel', 'Poland', '500.00', '60883c5695d59.jpg', NULL);
 
 -- --------------------------------------------------------
@@ -82,6 +84,13 @@ CREATE TABLE `user` (
   `image` varchar(255) DEFAULT NULL,
   `status` varchar(4) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `user`
+--
+
+INSERT INTO `user` (`id`, `f_name`, `l_name`, `pass`, `date_of_birth`, `email`, `image`, `status`) VALUES
+(1, 'Mario', 'Hartleb', '1ad4ab0a74a2483318322183d0807282f01f2d8ba6779fd6bd28d871f06885b0', '2021-04-17', 'mario@gmail.com', 'avatar.png', 'adm');
 
 --
 -- Indizes der exportierten Tabellen
@@ -126,7 +135,7 @@ ALTER TABLE `hotels`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints der exportierten Tabellen
