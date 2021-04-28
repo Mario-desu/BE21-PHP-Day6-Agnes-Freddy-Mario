@@ -12,7 +12,7 @@ if (isset($_SESSION['adm']) != "") {
 }
 
 $error = false;
-$email = $password = $emailError = $passError = '';
+$email = $pass = $emailError = $passError = '';
 
 if (isset($_POST['btn-login'])) {
 
@@ -42,16 +42,16 @@ if (isset($_POST['btn-login'])) {
     // if there's no error, continue to login
     if (!$error) {
 
-        $password = hash('sha256', $pass); // password hashing
+        $pass = hash('sha256', $pass); // password hashing
 
-        $sqlSelect = "SELECT id, first_name, password, status FROM user WHERE email = ? ";
+        $sqlSelect = "SELECT id, f_name, pass, status FROM user WHERE email = ? ";
         $stmt = $connect->prepare($sqlSelect);
         $stmt->bind_param("s", $email);
         $work = $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
         $count = $result->num_rows;
-        if ($count == 1 && $row['password'] == $password) {
+        if ($count == 1 && $row['pass'] == $pass) {
             if($row['status'] == 'adm'){
                 $_SESSION['adm'] = $row['id'];           
                 header( "Location: dashboard.php");}

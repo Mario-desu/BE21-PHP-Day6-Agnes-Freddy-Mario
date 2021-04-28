@@ -9,7 +9,7 @@ if (isset($_SESSION[ 'adm' ]) != "") {
 require_once  'components/db_connect.php';
 require_once 'components/file_upload.php' ;
 $error = false;
-$fname = $lname = $email = $date_of_birth = $pass = $picture = '';
+$fname = $lname = $email = $date_of_birth = $pass = $image = '';
 $fnameError = $lnameError = $emailError = $dateError = $passError = $picError = '';
 
 function cleanInput($var){
@@ -39,7 +39,7 @@ if (isset($_POST[ 'btn-signup'])) {
   
 
    $uploadError = '';
-   $picture = file_upload($_FILES['picture']);
+   $image = file_upload($_FILES['image']);
 
    // basic name validation
    if (empty($fname) || empty($lname)) {
@@ -82,23 +82,23 @@ if (isset($_POST[ 'btn-signup'])) {
    }
 
    // password hashing for security
-   $password = hash('sha256', $pass);
+   $pass = hash('sha256', $pass);
    // if there's no error, continue to signup
     if (!$error) {
 
-       $query = "INSERT INTO user(first_name, last_name, password, date_of_birth, email, picture)
-                 VALUES('$fname', '$lname', '$password', '$date_of_birth', '$email', '$picture->fileName')";
+       $query = "INSERT INTO user(f_name, l_name, pass, date_of_birth, email, image)
+                 VALUES('$fname', '$lname', '$pass', '$date_of_birth', '$email', '$image->fileName')";
        $res = mysqli_query($connect, $query);
 
        if ($res) {
            $errTyp = "success";
            $errMSG = "Successfully registered, you may login now";
-           $uploadError = ($picture->error != 0) ? $picture->ErrorMessage : '';
+           $uploadError = ($image->error != 0) ? $image->ErrorMessage : '';
 
        } else {
            $errTyp = "danger";
            $errMSG = "Something went wrong, try again later..." ;
-           $uploadError = ($picture->error != 0) ? $picture->ErrorMessage : '';
+           $uploadError = ($image->error != 0) ? $image->ErrorMessage : '';
        }
    }
 }
