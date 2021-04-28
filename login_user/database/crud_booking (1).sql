@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 27. Apr 2021 um 15:41
+-- Erstellungszeit: 28. Apr 2021 um 10:00
 -- Server-Version: 10.4.18-MariaDB
 -- PHP-Version: 8.0.3
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `crud_booking`
 --
-CREATE DATABASE IF NOT EXISTS `crud_booking` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `crud_booking`;
 
 -- --------------------------------------------------------
 
@@ -35,6 +33,15 @@ CREATE TABLE `agency` (
   `agency_email` varchar(50) DEFAULT NULL,
   `agency_website` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `agency`
+--
+
+INSERT INTO `agency` (`agencyId`, `agency_name`, `agency_email`, `agency_website`) VALUES
+(1, 'TUI', 'office@tui.at', 'www.tui.at'),
+(2, 'Ruefa', 'office@ruefa.at', 'www.ruefa.at'),
+(3, 'Sunshine Travel', 'office@sunshine.at', 'www.sunshine.at');
 
 -- --------------------------------------------------------
 
@@ -56,8 +63,8 @@ CREATE TABLE `hotels` (
 --
 
 INSERT INTO `hotels` (`hotel_id`, `hotelName`, `hotelLoc`, `hotelPrice`, `hotelImage`, `fk_agencyId`) VALUES
-(1, 'Agnes', 'Poland', '5000.00', 'avatar.png', NULL),
-(2, 'Agnes', 'Poland', '5000.00', 'avatar.png', NULL);
+(1, 'Hotel Sachre', 'Vienna', '450.00', '60883939c329c.jpg', NULL),
+(2, 'Marriott Hotel', 'Poland', '500.00', '60883c5695d59.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -107,7 +114,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT für Tabelle `agency`
 --
 ALTER TABLE `agency`
-  MODIFY `agencyId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `agencyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `hotels`
