@@ -1,7 +1,12 @@
 <?php
-function file_upload($image) {
+function file_upload($image, $source = 'login_user') {
     $result = new stdClass();//this object will carry status from file upload
     $result->fileName = 'avatar.png';
+    if(isset($_SESSION['adm'])){
+
+        $result->fileName = 'product.png';  
+
+    }
     $result->error = 1;//it could also be a boolean true/false
     //collect data from object $image
     $fileName = $image["name"];
@@ -20,7 +25,18 @@ function file_upload($image) {
                 if ($fileSize < 500000) { //500kb this number is in bytes
                     //it gives a file name based microseconds
                     $fileNewName = uniqid('') . "." . $fileExtension; // 1233343434.jpg i.e
-                    $destination = "../../pictures/$fileNewName";
+                    if($source == 'hotels'){
+                        echo "bbbb";
+                        $destination = "../pictures/$fileNewName";
+
+                    }elseif ($source == 'login_user'){
+                        echo "cccc";
+                        $destination = "../pictures/$fileNewName";
+
+                    } else {
+                        echo "aaaa";
+                    }
+                    
                     if (move_uploaded_file($fileTmpName, $destination)) {
                         $result->error = 0;
                         $result->fileName = $fileNewName;

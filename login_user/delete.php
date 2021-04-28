@@ -19,18 +19,18 @@ if ($_GET['id']) {
     $result = $connect->query($sql);
     $data = $result->fetch_assoc();
     if ($result->num_rows == 1) {
-        $f_name = $data['first_name'];
-        $l_name = $data['last_name'];
+        $f_name = $data['f_name'];
+        $l_name = $data['l_name'];
         $email = $data['email'];
         $date_of_birth = $data['date_of_birth'];
-        $picture = $data['picture'];
+        $image = $data['image'];
     } 
 }
 //the POST method will actually delete the user permanently
 if ($_POST) {
     $id = $_POST['id'];
-    $picture = $_POST['picture'];
-    ($picture =="avatar.png")?: unlink("pictures/$picture");
+    $image = $_POST['image'];
+    ($image =="avatar.png")?: unlink("pictures/$image");
     $sql = "DELETE FROM user WHERE id = {$id}";
     if ($connect->query($sql) === TRUE) {
         $class = "alert alert-success";
@@ -69,7 +69,7 @@ $connect->close();
             <p><?php echo ($message) ?? ''; ?></p>           
         </div>
         <fieldset>
-            <legend class='h2 mb-3'>Delete request <img class='img-thumbnail rounded-circle' src='pictures/<?php echo $picture ?>' alt="<?php echo $f_name ?>"></legend>
+            <legend class='h2 mb-3'>Delete request <img class='img-thumbnail rounded-circle' src='pictures/<?php echo $image ?>' alt="<?php echo $f_name ?>"></legend>
             <h5>You have selected the data below:</h5>
             <table class="table w-75 mt-3">
                 <tr>
@@ -81,7 +81,7 @@ $connect->close();
             <h3 class="mb-4">Do you really want to delete this user?</h3>
             <form method="post">
                 <input type="hidden" name="id" value="<?php echo $id ?>" />
-                <input type="hidden" name="picture" value="<?php echo $picture ?>" />
+                <input type="hidden" name="image" value="<?php echo $image ?>" />
                 <button class="btn btn-danger" type="submit">Yes, delete it!</button >
                 <a href="dashboard.php"><button class="btn btn-warning" type="button">No, go back!</button></a>
             </form>

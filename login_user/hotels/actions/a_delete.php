@@ -1,12 +1,25 @@
 <?php 
-require_once 'db_connect.php';
+session_start();
+
+if (isset($_SESSION[ 'user']) != "") {
+   header("Location: ../../home.php");
+   exit;
+}
+
+if  (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
+   header("Location: ../../index.php" );
+    exit;
+}
+
+
+require_once ' ../../components/db_connect.php';
 
 if ($_POST) {
     $id = $_POST['id'];
-    $picture = $_POST['picture'];
-    ($picture =="product.png")?: unlink("../pictures/$picture");
+    $image = $_POST['image'];
+    ($image =="product.png")?: unlink("../../pictures/$image");
 
-    $sql = "DELETE FROM products WHERE id = {$id}";
+    $sql = "DELETE FROM hotels WHERE hotel_id = {$id}";
     if ($connect->query($sql) === TRUE) {
         $class = "success";
         $message = "Successfully Deleted!";
@@ -25,7 +38,7 @@ if ($_POST) {
     <head>
         <meta charset="UTF-8">
         <title>Delete</title>
-        <?php require_once '../components/boot.php'?>  
+        <?php require_once '../../components/boot.php'?>  
     </head>
     <body>
         <div class="container">

@@ -25,8 +25,8 @@ $tbody = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
         $tbody .= "<tr>
-            <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row['picture'] . "' alt=" . $row['first_name'] . "></td>
-            <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
+            <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row['image'] . "' alt=" . $row['f_name'] . "></td>
+            <td>" . $row['f_name'] . " " . $row['l_name'] . "</td>
             <td>" . $row['date_of_birth'] . "</td>
             <td>" . $row['email'] . "</td>
             <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
@@ -72,7 +72,7 @@ $connect->close();
                     <img class="userImage img-fluid" src="pictures/admavatar.png" alt="Adm avatar">
                     <p class="">Administrator</p>
 
-                    <a href="hotels/index.php">Hotels</a>
+                    <a href="hotels/index.php">Hotels</a><br>
                     <a href="logout.php?logout">Sign Out</a>
                 </div>
                 <div class="col-8 mt-2 ms-4">
@@ -80,7 +80,7 @@ $connect->close();
                     <table class='table table-striped'>
                         <thead class='table-success'>
                             <tr>
-                                <th>Picture</th>
+                                <th>image</th>
                                 <th>Name</th>
                                 <th>Date of birth</th>
                                 <th>Email</th>

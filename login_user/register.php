@@ -143,7 +143,7 @@ $connect->close();
                <input class='form-control w-50'  type="date"   name="date_of_birth"  value = "<?php echo $date_of_birth ?>"/>
                 <span  class="text-danger" > <?php  echo $dateError; ?> </span>
 
-                <input  class='form-control w-50' type="file" name= "picture" >
+                <input  class='form-control w-50' type="file" name= "image" >
                 <span  class= "text-danger" >  <?php   echo  $picError; ?>   </span >
             </div >
             <input   type = "password"   name = "pass"   class = "form-control"   placeholder = "Enter Password"   maxlength = "15"   />
