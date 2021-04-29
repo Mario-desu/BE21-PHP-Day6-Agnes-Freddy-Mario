@@ -12,7 +12,7 @@ if  (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
 }
 
 
-require_once ' ../../components/db_connect.php';
+require_once '../../components/db_connect.php';
 
 if ($_POST) {
     $id = $_POST['id'];

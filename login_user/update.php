@@ -22,9 +22,11 @@ if (isset($_SESSION["user"])) {
     $session = $_SESSION["adm"];
 }
 $sql = "SELECT * FROM user WHERE id = {$session}";
+
 $result = mysqli_query($connect, $sql);
+
 $row = $result->fetch_assoc();
-# var_dump($row);
+// var_dump($row);
 //fetch and populate form
 if ($row["status"] == "adm") {
     if (isset($_GET['id'])) {
@@ -63,9 +65,9 @@ if (isset($_POST["submit"])) {
     $id = $_POST['id']; # $_SESSION["user"];
     //variable for upload imas errors is initialized
     $uploadError = '';
-    $imaArray = file_upload($_FILES['ima']); //file_upload() called
-    $image = $imaArray->fileName;
-    if ($imaArray->error === 0) {
+    $imageArray = file_upload($_FILES['image']); //file_upload() called
+    $image = $imageArray->fileName;
+    if ($imageArray->error === 0) {
         ($_POST["imag"] == "avatar.png") ?: unlink("pictures/{$_POST["image"]}");
         $sql = "UPDATE user SET f_name = '$f_name', l_name = '$l_name', email = '$email', date_of_birth = '$date_of_birth', imag = '$imageArray->fileName' WHERE id = {$id}";
     } else {
@@ -136,14 +138,13 @@ $connect->close();
                 <tr>
                     <th>Image
                     </th>
-                    <td><input class="form-control" type="file" name="image
-        " /></td>
+                    <td><input class="form-control" type="file" name="image" /></td>
                 </tr>
                 <tr>
+                
+                
                     <input type="hidden" name="id" value="<?php echo $data['id'] ?>" />
-                    <input type="hidden" name="image
-        " value="<?php echo $image
-                    ?>" />
+                    <input type="hidden" name="image" value="<?php echo $image?>" />
                     <td><button name="submit" class="btn btn-success" type="submit">Save Changes</button></td>
                     <td><a href="<?php echo $backBtn ?>"><button class="btn btn-warning" type="button">Back</button></a></td>
                 </tr>

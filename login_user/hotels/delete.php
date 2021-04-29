@@ -12,8 +12,9 @@ if (isset($_SESSION["user"])) {
 }
 require_once '../components/db_connect.php';
 
-if ($_GET['hotel_id']) {
-    $id = $_GET['hotel_id'];
+//id from the URL
+if ($_GET['id']) {
+    $id = $_GET['id'];
     $sql = "SELECT * FROM hotels WHERE hotel_id = {$id}" ;
     $result = $connect->query($sql);
     $data = $result->fetch_assoc();

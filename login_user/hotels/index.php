@@ -25,6 +25,7 @@ if(mysqli_num_rows($result)  > 0) {
             <td><a href='update.php?id=" .$row['hotel_id']."'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
             <a href='delete.php?id=" .$row['hotel_id']."'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
             </tr>";
+            // id in url is a parameter for get in delete or update
     };
 } else {
     $tbody =  "<tr><td colspan='5'><center>No Data Available </center></td></tr>";

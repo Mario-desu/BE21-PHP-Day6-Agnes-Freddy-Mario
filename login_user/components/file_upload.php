@@ -1,5 +1,5 @@
 <?php
-function file_upload($image, $source = 'login_user') {
+function file_upload($image, $source = 'user') {
     $result = new stdClass();//this object will carry status from file upload
     $result->fileName = 'avatar.png';
     if(isset($_SESSION['adm'])){
@@ -29,7 +29,7 @@ function file_upload($image, $source = 'login_user') {
                        
                         $destination = "../../pictures/$fileNewName";
 
-                    }elseif ($source == 'login_user'){
+                    }elseif ($source == 'user'){
                         
                         $destination = "pictures/$fileNewName";
 

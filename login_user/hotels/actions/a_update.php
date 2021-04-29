@@ -24,7 +24,7 @@ if ($_POST) {
     //variable for upload images errors is initialized
     $uploadError = '';
 
-    $image = file_upload($_FILES['image'], 'hotel');//file_upload() called  
+    $image = file_upload($_FILES['image'], 'hotel');// "hotel" -> for the upload function (hotels-level)
     if($image->error===0){
         ($_POST["image"]=="product.png")?: unlink("../../pictures/$_POST[image]");           
         $sql = "UPDATE hotels SET hotelName = '$name', hotelLoc = '$location', hotelPrice = $price, hotelImage = '$image->fileName' WHERE hotel_id = {$id}";

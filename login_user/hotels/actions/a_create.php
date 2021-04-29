@@ -20,7 +20,7 @@ if ($_POST) {
     $price = $_POST['price'];
     $uploadError = '';
     //this function exists in the service file upload.
-    $image = file_upload($_FILES['image'], 'hotel');  
+    $image = file_upload($_FILES['image'], 'hotel');  // "hotel" -> for the upload function (hotels-level)
    
     $sql = "INSERT INTO hotels (hotelName, hotelLoc, hotelPrice, hotelImage) VALUES ('$name', '$location', $price, '$image->fileName')";
 
